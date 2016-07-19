@@ -7,19 +7,19 @@ var GameBoard = React.createClass({
       <div>
         <table>
           <tr>
-            <button>{this.props.data[0][0]}</button>
-            <button>{this.props.data[0][1]}</button>
-            <button>{this.props.data[0][2]}</button>
+            <button>{this.props.data.boardData[0][0]}</button>
+            <button>{this.props.data.boardData[0][1]}</button>
+            <button>{this.props.data.boardData[0][2]}</button>
           </tr>
           <tr>
-            <button>{this.props.data[1][0]}</button>
-            <button>{this.props.data[1][1]}</button>
-            <button>{this.props.data[1][2]}</button>
+            <button>{this.props.data.boardData[1][0]}</button>
+            <button>{this.props.data.boardData[1][1]}</button>
+            <button>{this.props.data.boardData[1][2]}</button>
           </tr>
           <tr>
-            <button>{this.props.data[2][0]}</button>
-            <button>{this.props.data[2][1]}</button>
-            <button>{this.props.data[2][2]}</button>
+            <button>{this.props.data.boardData[2][0]}</button>
+            <button>{this.props.data.boardData[2][1]}</button>
+            <button>{this.props.data.boardData[2][2]}</button>
           </tr>
         </table>
       </div>

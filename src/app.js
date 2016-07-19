@@ -5,11 +5,20 @@ var GameBoard = require('./components/GameBoard');
 var data = require('./components/data');
 
 var App = React.createClass({
+  getInitialState: function () {
+    return {
+      boardData: [
+        [null, null, null],
+        [null, null, null],
+        [null, null, null]
+      ]
+    }
+  },
   render: function () {
     return (
       <div>
         <h1>Noughts and Crosses</h1>
-        <GameBoard data={this.props.data} />
+        <GameBoard data={this.state.data} />
       </div>
     );
   }
