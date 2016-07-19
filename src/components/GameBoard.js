@@ -7,19 +7,19 @@ var GameBoard = React.createClass({
       <div>
         <table>
           <tr>
-            <button>{this.props.tilesData[0][0]}</button>
-            <button>{this.props.tilesData[0][1]}</button>
-            <button>{this.props.tilesData[0][2]}</button>
+            <button onClick={this.props.handleClick.bind(this, 0)} className="tile" id="0">{this.props.tilesData[0]}</button>
+            <button onClick={this.props.handleClick.bind(this, 1)} className="tile" id="1">{this.props.tilesData[1]}</button>
+            <button onClick={this.props.handleClick.bind(this, 2)} className="tile" id="2">{this.props.tilesData[2]}</button>
           </tr>
           <tr>
-            <button>{this.props.tilesData[1][0]}</button>
-            <button>{this.props.tilesData[1][1]}</button>
-            <button>{this.props.tilesData[1][2]}</button>
+            <button onClick={this.props.handleClick.bind(this, 3)} className="tile" id="3">{this.props.tilesData[3]}</button>
+            <button onClick={this.props.handleClick.bind(this, 4)} className="tile" id="4">{this.props.tilesData[4]}</button>
+            <button onClick={this.props.handleClick.bind(this, 5)} className="tile" id="5">{this.props.tilesData[5]}</button>
           </tr>
           <tr>
-            <button>{this.props.tilesData[2][0]}</button>
-            <button>{this.props.tilesData[2][1]}</button>
-            <button>{this.props.tilesData[2][2]}</button>
+            <button onClick={this.props.handleClick.bind(this, 6)} className="tile" id="6">{this.props.tilesData[6]}</button>
+            <button onClick={this.props.handleClick.bind(this, 7)} className="tile" id="7">{this.props.tilesData[7]}</button>
+            <button onClick={this.props.handleClick.bind(this, 8)} className="tile" id="8">{this.props.tilesData[8]}</button>
           </tr>
         </table>
       </div>
