@@ -8,9 +8,9 @@ var App = React.createClass({
   getInitialState: function () {
     return {
       boardData: [
-        '', '', '',
-        '', '', '',
-        '', '', ''
+        ' ', ' ', ' ',
+        ' ', ' ', ' ',
+        ' ', ' ', ' '
       ],
       pFlag: true
     }
@@ -18,15 +18,15 @@ var App = React.createClass({
   handleClick: function (id) {
     var newBoard = this.state.boardData.slice();
     var turn = this.state.pFlag;
-    if (this.state.pFlag === true) {
+    if (this.state.pFlag === true && newBoard[id] === ' ') {
       newBoard[id] = 'X';
-    } else {
+      this.setState({pFlag: !turn})
+    } else if (newBoard[id] === ' ') {
       newBoard[id] = 'O';
+      this.setState({pFlag: !turn})
     }
-    console.log(this.state.boardData = newBoard);
     this.setState({
       boardData: newBoard,
-      pFlag: !turn
     });
   },
   render: function () {
