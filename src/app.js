@@ -12,13 +12,22 @@ var App = React.createClass({
         '', '', '',
         '', '', ''
       ],
+      pFlag: true
     }
   },
   handleClick: function (id) {
-    console.log(id);
     var newBoard = this.state.boardData.slice();
-    newBoard[id] = 'x';
-    this.boardData = newBoard;
+    var turn = this.state.pFlag;
+    if (this.state.pFlag === true) {
+      newBoard[id] = 'X';
+    } else {
+      newBoard[id] = 'O';
+    }
+    console.log(this.state.boardData = newBoard);
+    this.setState({
+      boardData: newBoard,
+      pFlag: !turn
+    });
   },
   render: function () {
     return (
