@@ -1,0 +1,5 @@
+export const PLACE_TILE = "PLACE_TILE";
+export const CHECK_WIN = "CHECK_WIN";
+export const DETERMINE_ROW = "DETERMINE_ROW";
+export const DETERMINE_COLUMN = "DETERMINE_COLUMN";
+export const DETERMINE_DIAGONAL = "DETERMINE_DIAGONAL";
