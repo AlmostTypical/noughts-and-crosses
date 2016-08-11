@@ -17,9 +17,9 @@ describe('actions.reducer', function () {
         playerTurn: true,
         selectedTile: 0,
         boardData: [
-          '', '', '',
-          '', '', '',
-          '', '', ''
+          '-', '-', '-',
+          '-', '-', '-',
+          '-', '-', '-'
         ],
         turnNumber: 0,
       };
@@ -29,9 +29,9 @@ describe('actions.reducer', function () {
         playerTurn: true,
         selectedTile: 2,
         boardData: [
-          '', '', 'X',
-          '', '', '',
-          '', '', ''
+          '-', '-', 'X',
+          '-', '-', '-',
+          '-', '-', '-'
         ],
         turnNumber: 1,
       };
@@ -42,9 +42,9 @@ describe('actions.reducer', function () {
         playerTurn: false,
         selectedTile: 0,
         boardData: [
-          '', '', '',
-          '', '', '',
-          '', '', ''
+          '-', '-', '-',
+          '-', '-', '-',
+          '-', '-', '-'
         ],
         turnNumber: 0,
       };
@@ -54,9 +54,9 @@ describe('actions.reducer', function () {
         playerTurn: false,
         selectedTile: 4,
         boardData: [
-          '', '', '',
-          '', 'O', '',
-          '', '', ''
+          '-', '-', '-',
+          '-', 'O', '-',
+          '-', '-', '-'
         ],
         turnNumber: 1,
       };
@@ -68,9 +68,9 @@ describe('actions.reducer', function () {
       var initialState = {
         selectedTile: 4,
         boardData: [
-          '', '', '',
-          'X', 'X', '',
-          '', '', ''
+          '-', '-', '-',
+          'X', 'X', '-',
+          '-', '-', '-'
         ],
         selectedRow: []
       };
@@ -79,11 +79,11 @@ describe('actions.reducer', function () {
       var expected = {
         selectedTile: 4,
         boardData: [
-          '', '', '',
-          'X', 'X', '',
-          '', '', ''
+          '-', '-', '-',
+          'X', 'X', '-',
+          '-', '-', '-'
         ],
-        selectedRow: ['X', 'X', '']
+        selectedRow: ['X', 'X', '-']
       };
       expect(newState).to.eql(expected)
     });
@@ -93,9 +93,9 @@ describe('actions.reducer', function () {
       var initialState = {
         selectedTile: 4,
         boardData: [
-          '', 'O', '',
-          'X', 'X', '',
-          '', '', ''
+          '-', 'O', '-',
+          'X', 'X', '-',
+          '-', '-', '-'
         ],
         selectedCol: []
       };
@@ -104,11 +104,11 @@ describe('actions.reducer', function () {
       var expected = {
         selectedTile: 4,
         boardData: [
-          '', 'O', '',
-          'X', 'X', '',
-          '', '', ''
+          '-', 'O', '-',
+          'X', 'X', '-',
+          '-', '-', '-'
         ],
-        selectedCol: ['O', 'X', '']
+        selectedCol: ['O', 'X', '-']
       };
       expect(newState).to.eql(expected)
     });
@@ -118,9 +118,9 @@ describe('actions.reducer', function () {
       var initialState = {
         selectedTile: 2,
         boardData: [
-          '', '', 'X',
-          'X', 'X', '',
-          'O', '', ''
+          '-', '-', 'X',
+          'X', 'X', '-',
+          'O', '-', '-'
         ],
         selectedDiag: []
       };
@@ -129,9 +129,9 @@ describe('actions.reducer', function () {
       var expected = {
         selectedTile: 2,
         boardData: [
-          '', '', 'X',
-          'X', 'X', '',
-          'O', '', ''
+          '-', '-', 'X',
+          'X', 'X', '-',
+          'O', '-', '-'
         ],
         selectedDiag: ['X', 'X', 'O']
       };
@@ -141,9 +141,9 @@ describe('actions.reducer', function () {
       var initialState = {
         selectedTile: 1,
         boardData: [
-          '', '', 'X',
-          'X', 'X', '',
-          'O', '', ''
+          '-', '-', 'X',
+          'X', 'X', '-',
+          'O', '-', '-'
         ],
         selectedDiag: []
       };
@@ -152,11 +152,32 @@ describe('actions.reducer', function () {
       var expected = {
         selectedTile: 1,
         boardData: [
-          '', '', 'X',
-          'X', 'X', '',
-          'O', '', ''
+          '-', '-', 'X',
+          'X', 'X', '-',
+          'O', '-', '-'
         ],
         selectedDiag: []
+      };
+      expect(newState).to.eql(expected)
+    });
+  });
+  describe('CHECK_WIN', function () {
+    it('handles the action correctly', function () {
+      var initialState = {
+        playerTurn: false,
+        selectedRow: ['O', 'O', 'O'],
+        selectedCol: ['X', '-', '-'],
+        selectedDiag: ['-','-','-'],
+        winner: ''
+      };
+      var myAction = actions.checkWin();
+      var newState = reducer(initialState, myAction);
+      var expected = {
+        playerTurn: true,
+        selectedRow: ['O', 'O', 'O'],
+        selectedCol: ['X', '-', '-'],
+        selectedDiag: ['-', '-', '-'],
+        winner: 'O'
       };
       expect(newState).to.eql(expected)
     });

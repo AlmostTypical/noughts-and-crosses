@@ -98,14 +98,23 @@ const reducer = function (initialState, action) {
       break;
     case types.CHECK_WIN:
       let winner = '';
+      const checkO = function (tile) {
+        return tile === 'O'
+      };
+      const checkX = function (tile) {
+        return tile === 'X'
+      };
       let selectedRow = initialState.selectedRow.slice();
       let selectedCol = initialState.selectedCol.slice();
       let selectedDiag = initialState.selectedDiag.slice();
-      if (selectedRow === ['X', 'X', 'X'] || selectedCol === ['X', 'X', 'X'] ||
-        selectedDiag === ['X', 'X', 'X']) {
+      console.log(selectedRow.every(checkX));
+      console.log(selectedCol.every(checkX));
+      console.log(selectedDiag.every(checkX));
+      if (selectedRow.every(checkX) || selectedCol.every(checkX) ||
+        selectedDiag.every(checkX)) {
         winner = 'X'
-      } else if (selectedRow === ['O', 'O', 'O'] || selectedCol === ['O', 'O', 'O'] ||
-        selectedDiag === ['O', 'O', 'O']) {
+      } else if (selectedRow.every(checkO) || selectedCol.every(checkO) ||
+        selectedDiag.every(checkO)) {
         winner = 'O'
       } else {
         winner = ''
