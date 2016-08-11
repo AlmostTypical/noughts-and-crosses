@@ -72,7 +72,7 @@ const reducer = function (initialState, action) {
       break;
     case types.DETERMINE_DIAGONAL:
       let selectedTileDiag = initialState.selectedTile;
-      let boardData = initialState.boardData.slice;
+      let boardData = initialState.boardData.slice();
       let num = 3;
       let diagOne = [];
       let diagTwo = [];

@@ -63,5 +63,102 @@ describe('actions.reducer', function () {
       expect(newState).to.eql(expected)
     })
   });
-
+  describe('DETERMINE_ROW', function () {
+    it('handles the action correctly', function () {
+      var initialState = {
+        selectedTile: 4,
+        boardData: [
+          '', '', '',
+          'X', 'X', '',
+          '', '', ''
+        ],
+        selectedRow: []
+      };
+      var myAction = actions.determineRow();
+      var newState = reducer(initialState, myAction);
+      var expected = {
+        selectedTile: 4,
+        boardData: [
+          '', '', '',
+          'X', 'X', '',
+          '', '', ''
+        ],
+        selectedRow: ['X', 'X', '']
+      };
+      expect(newState).to.eql(expected)
+    });
+  });
+  describe('DETERMINE_COLUMN', function () {
+    it('handles the action correctly', function () {
+      var initialState = {
+        selectedTile: 4,
+        boardData: [
+          '', 'O', '',
+          'X', 'X', '',
+          '', '', ''
+        ],
+        selectedCol: []
+      };
+      var myAction = actions.determineColumn();
+      var newState = reducer(initialState, myAction);
+      var expected = {
+        selectedTile: 4,
+        boardData: [
+          '', 'O', '',
+          'X', 'X', '',
+          '', '', ''
+        ],
+        selectedCol: ['O', 'X', '']
+      };
+      expect(newState).to.eql(expected)
+    });
+  });
+  describe('DETERMINE_DIAGONAL', function () {
+    it('handles the action correctly', function () {
+      var initialState = {
+        selectedTile: 2,
+        boardData: [
+          '', '', 'X',
+          'X', 'X', '',
+          'O', '', ''
+        ],
+        selectedDiag: []
+      };
+      var myAction = actions.determineDiagonal();
+      var newState = reducer(initialState, myAction);
+      var expected = {
+        selectedTile: 2,
+        boardData: [
+          '', '', 'X',
+          'X', 'X', '',
+          'O', '', ''
+        ],
+        selectedDiag: ['X', 'X', 'O']
+      };
+      expect(newState).to.eql(expected)
+    });
+    it('handles the action correctly when no diag is present', function () {
+      var initialState = {
+        selectedTile: 1,
+        boardData: [
+          '', '', 'X',
+          'X', 'X', '',
+          'O', '', ''
+        ],
+        selectedDiag: []
+      };
+      var myAction = actions.determineDiagonal();
+      var newState = reducer(initialState, myAction);
+      var expected = {
+        selectedTile: 1,
+        boardData: [
+          '', '', 'X',
+          'X', 'X', '',
+          'O', '', ''
+        ],
+        selectedDiag: []
+      };
+      expect(newState).to.eql(expected)
+    });
+  });
 });
