@@ -4,16 +4,16 @@ import actions from '../actions/actions';
 let originalState = {
   playerTurn: true,
   boardData: [
-    '', '', '',
-    '', '', '',
-    '', '', ''
+    '-', '-', '-',
+    '-', '-', '-',
+    '-', '-', '-'
   ],
   turnNumber: 0,
   selectedTile: 0,
   selectedRow: [],
   selectedCol: [],
   selectedDiag: [],
-  winner: ''
+  winner: '-'
 
 };
 
@@ -22,13 +22,19 @@ const reducer = function (initialState, action) {
   let newState;
   switch(action.type) {
     case types.PLACE_TILE:
-      let newBoardData = initialState.boardData.slice();
-      newBoardData[action.tile] = (initialState.playerTurn === true) ? 'X' : 'O';
-      newState = Object.assign({}, initialState, {
-        selectedTile: action.tile,
-        boardData: newBoardData,
-        turnNumber: initialState.turnNumber + 1
-      });
+      if (initialState.winner === '-' && initialState.boardData[action.tile] === '-') {
+      console.log(initialState.winner);
+        let newBoardData = initialState.boardData.slice();
+        newBoardData[action.tile] = (initialState.playerTurn === true) ? 'X' : 'O';
+        newState = Object.assign({}, initialState, {
+          selectedTile: action.tile,
+          boardData: newBoardData,
+          turnNumber: initialState.turnNumber + 1,
+          playerTurn: !initialState.playerTurn
+        });
+      } else {
+        newState = initialState
+      }
       break;
     case types.DETERMINE_ROW:
       let selectedTileRow = initialState.selectedTile;
@@ -90,14 +96,14 @@ const reducer = function (initialState, action) {
       } else if (selectedTileDiag >= 2 && selectedTileDiag <= 6 && selectedTileDiag % 2 === 0) {
         chosenDiag = diagTwo;
       } else {
-        chosenDiag = []
+        chosenDiag = ['-', '-', '-']
       }
       newState = Object.assign({}, initialState, {
         selectedDiag: chosenDiag
       });
       break;
     case types.CHECK_WIN:
-      let winner = '';
+      let winner = '-';
       const checkO = function (tile) {
         return tile === 'O'
       };
@@ -117,11 +123,10 @@ const reducer = function (initialState, action) {
         selectedDiag.every(checkO)) {
         winner = 'O'
       } else {
-        winner = ''
+        winner = '-'
       }
       newState = Object.assign({}, initialState, {
         winner: winner,
-        playerTurn: !initialState.playerTurn
       });
       break;
     default:

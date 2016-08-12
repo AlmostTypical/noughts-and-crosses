@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import reducer from './reducer/reducer';
-import Gameboard from './components/GameBoard';
+import GameBoard from './components/GameBoard';
 
 const store = createStore(reducer);
 
-const app = React.createClass({
+const App = React.createClass({
   render: function () {
     return (
       <div>
-        <Gameboard />
+        <GameBoard />
       </div>
     )
   }
@@ -19,6 +19,6 @@ const app = React.createClass({
 
 ReactDOM.render(
   <Provider store={store}>
-    <app />
+    <App />
   </Provider>,
-  document.getElementById('app'));
+  document.getElementById('App'));

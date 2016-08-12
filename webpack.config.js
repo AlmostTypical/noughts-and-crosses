@@ -4,7 +4,7 @@ const bundleFolder = path.join(__dirname, 'public', 'js');
 
 module.exports = validate({
   entry: {
-    app: ['./src/app.js']
+    app: ['./src/App.js']
   },
   output: {
     filename: 'bundle.js',
